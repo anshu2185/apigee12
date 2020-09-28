@@ -12,29 +12,9 @@ node {
 		def mvnHome = tool 'Maven3.3.9'
 	    sh "${mvnHome}/bin/mvn --version"
 		echo "${env.WORKSPACE}"
-		def files = getAllFiles(createFilePath("${workspace}/apigee-codegen"))
+		def files = findFiles(glob: "**/*.xml")
 		echo "${files}"
 	}		
 
 }
 
-@NonCPS
-def getAllFiles(rootPath) {
-    def list = []
-    for (subPath in rootPath.list()) {
-        list << subPath.getName()
-        // in case you don't want extension
-        // list << FilenameUtils.removeExtension(subPath.getName())
-    }
-    return list
-}
-
-// Helps if slave servers are in picture
-def createFilePath(def path) {
-    if (env['NODE_NAME'].equals("master")) {
-        File localPath = new File(path)
-        return new hudson.FilePath(localPath);
-    } else {
-        return new hudson.FilePath(Jenkins.getInstance().getComputer(env['NODE_NAME']).getChannel(), path);
-    }
-}
