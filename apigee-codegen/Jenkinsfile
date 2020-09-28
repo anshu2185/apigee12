@@ -17,7 +17,7 @@ node {
 def readDir()
 {
     def  dirsl = [] 
-    new File("${workspace}").eachDir()
+    new File("${workspace}/apigee-codegen").eachDir()
     {
         dirs -> println dirs.getName() 
         if (!dirs.getName().startsWith('.')) {
