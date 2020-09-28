@@ -19,9 +19,10 @@ node {
 @NonCPS
 def readDir()
 {
-    FILES_DIR = './'
+    FILES_DIR = 'apigee-codegen'
     def filenames = [];
     def dir = new File("${env.WORKSPACE}/${FILES_DIR}");
+	echo "dir name:: ${dir}"
     dir.traverse(type: FILES, maxDepth: 0) {
         filenames.add(it.getName())
     }
