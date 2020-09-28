@@ -10,7 +10,7 @@ node {
 	    sh "${mvnHome}/bin/mvn --version"
 		echo "${WORKSPACE}"
 		def  dirsl = [] 
-    new File("${WORKSPACE}").eachDir()
+    new File("${WORKSPACE}/apigee-codegen").eachDir()
     {
         dirs -> println dirs.getName()
     }
