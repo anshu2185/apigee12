@@ -1,7 +1,9 @@
 node {
    echo 'SharedFlow Deployment started...'
   
-	
+	stage ('Checkout'){
+		checkout scm
+	}
 	
 	stage ('Deploying SharedFlow'){
 		def mvnHome = tool 'Maven3.3.9'
