@@ -12,14 +12,9 @@ node {
 		def mvnHome = tool 'Maven3.3.9'
 	    sh "${mvnHome}/bin/mvn --version"
 		echo "${env.WORKSPACE}"
-		readDir()
+		def files = findFiles(glob: '**/pom.xml')
+	echo "${files}"
 	}		
 
 }
-@NonCPS
-def readDir()
-{
-   def files = findFiles(glob: '**/pom.xml')
-	echo "${files}"
-	
-}
+
