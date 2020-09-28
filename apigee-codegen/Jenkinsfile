@@ -11,9 +11,16 @@ node {
 	stage ('Deploying SharedFlow'){
 		def mvnHome = tool 'Maven3.3.9'
 	    sh "${mvnHome}/bin/mvn --version"
-		echo "${WORKSPACE}"
-		FILES_DIR = './'
-		def filenames = [];
+		echo "${env.WORKSPACE}"
+		readDir()
+		
+
+}
+@NonCPS
+def readDir()
+{
+    FILES_DIR = './'
+    def filenames = [];
     def dir = new File("${env.WORKSPACE}/${FILES_DIR}");
     dir.traverse(type: FILES, maxDepth: 0) {
         filenames.add(it.getName())
@@ -24,19 +31,4 @@ node {
         echo "${filename}"
     }
 	}
-
-}
-@NonCPS
-def readDir()
-{
-    def filenames = [];
-    def dir = new File("${WORKSPACE}");
-    dir.traverse(type: FILES, maxDepth: 0) {
-        filenames.add(it.getName())
-    }
-
-    for (int i = 0; i < filenames.size(); i++) {
-        def filename = filenames[i]
-        echo "${filename}"
-    }
 }
