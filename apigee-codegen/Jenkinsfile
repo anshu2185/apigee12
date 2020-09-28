@@ -9,11 +9,19 @@ node {
 		def mvnHome = tool 'Maven3.3.9'
 	    sh "${mvnHome}/bin/mvn --version"
 		echo "${WORKSPACE}"
-		def  dirsl = [] 
-    new File("${WORKSPACE}/apigee-codegen").eachDir()
-    {
-        dirs -> println dirs.getName()
-    }
+		dirs = readDir()
 	}
-
+@NonCPS
+def readDir()
+{
+    def  dirsl = [] 
+    new File("${workspace}").eachDir()
+    {
+        dirs -> println dirs.getName() 
+        if (!dirs.getName().startsWith('.')) {
+            dirsl.add(dirs.getName())
+        }
+    }
+    dirsl
+}
 }
