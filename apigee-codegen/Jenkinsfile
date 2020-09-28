@@ -6,7 +6,7 @@ node {
 	stage ('Deploying SharedFlow'){
 		def mvnHome = tool 'Maven3.3.9'
 	    sh "${mvnHome}/bin/mvn --version"
-		echo ${workspace}
+		echo "${WORKSPACE}"
 		def  dirsl = [] 
     new File("${workspace}").eachDir()
     {
