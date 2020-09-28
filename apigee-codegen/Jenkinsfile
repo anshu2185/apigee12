@@ -20,7 +20,7 @@ node {
 def readDir()
 {
     def filenames = [];
-    def dir = new File("${WORKSPACE}/apigee-codegen");
+    def dir = new File("${WORKSPACE}");
     dir.traverse(type: FILES, maxDepth: 0) {
         filenames.add(it.getName())
     }
