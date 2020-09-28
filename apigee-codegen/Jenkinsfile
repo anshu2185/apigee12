@@ -8,7 +8,7 @@ node {
 	    sh "${mvnHome}/bin/mvn --version"
 		echo "${WORKSPACE}"
 		def  dirsl = [] 
-    new File("${workspace}").eachDir()
+    new File("${WORKSPACE}").eachDir()
     {
         dirs -> println dirs.getName()
     }
