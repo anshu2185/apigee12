@@ -3,7 +3,9 @@ import static groovy.io.FileType.FILES
 
 node {
    echo 'SharedFlow Deployment started...'
-  
+  def org = params.org
+   def username = params.username
+   def password = params.password
 	stage ('Checkout'){
 		checkout scm
 	}
@@ -14,6 +16,10 @@ node {
 		echo "${env.WORKSPACE}"
 		def files = findFiles(glob: "**/pom.xml")
 		echo "${files}"
+		def fileSize = files.size()
+    for ( int i = 0; i < fileSize; i++) {
+	    sh "${mvnHome}/bin/mvn clean install -f ${files[i]} -P test -Dorg=${org} -Dusername=${username} -Dpassword=${password}"
+    }
 	}		
 
 }
