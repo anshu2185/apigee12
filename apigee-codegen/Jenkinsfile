@@ -11,6 +11,8 @@ node {
 		echo "${WORKSPACE}"
 		dirs = readDir()
 	}
+
+}
 @NonCPS
 def readDir()
 {
@@ -23,5 +25,4 @@ def readDir()
         }
     }
     dirsl
-}
 }
