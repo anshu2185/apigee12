@@ -12,7 +12,7 @@ node {
 		def mvnHome = tool 'Maven3.3.9'
 	    sh "${mvnHome}/bin/mvn --version"
 		echo "${env.WORKSPACE}"
-		def files = getAllFiles(createFilePath("${workspace}/path_to_directory_in_workspace"))
+		def files = getAllFiles(createFilePath("${workspace}/apigee-codegen"))
 		echo "${files}"
 	}		
 
