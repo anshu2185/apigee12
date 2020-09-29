@@ -1,5 +1,3 @@
-#!groovy
-import static groovy.io.FileType.FILES
 
 node {
    echo 'SharedFlow Deployment started...'
